@@ -56,8 +56,26 @@ const cancelBooking = async (req , res)=>{
     }
 }
 
+const getAllTraveler = async (req , res)=>{
+    try{
+        
+        const booking = await BookingService.getAllTraveler(req.query.id);
+        res.status(200).json({
+            success : true,
+            message : "Successfully fetched All travelers",
+            data : booking
+        })
+    }catch(err){
+        console.log(err);
+        res.status(500).json({
+            success : false,
+            message : "Something went wrong",
+        })
+    }
+}
 module.exports = {
     createBooking,
     getBoardingPass,
-    cancelBooking
+    cancelBooking,
+    getAllTraveler
 }

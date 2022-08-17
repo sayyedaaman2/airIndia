@@ -39,8 +39,18 @@ const boardingPass =  async (id)=>{
 
 }
 
+const getAllTraveler = async (flightNumber)=>{
+    try{
+        const response = await Booking.find({flight : flightNumber}).populate("user").exec();
+        return response;
+    }catch(err){
+        console.log(err);
+
+    }
+}
 module.exports = {
     createBooking,
     cancelBooking,
-    boardingPass
+    boardingPass,
+    getAllTraveler
 }
